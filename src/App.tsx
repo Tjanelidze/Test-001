@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { UserType } from './types/user.type';
+import { UsersList } from './components/UsersList/UsersList';
+import { PhotoModal } from './components/PhotoModal/PhotoModal';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState<UserType[]>([]);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(
+          'https://jsonplaceholder.typicode.com/users'
+        );
+        const data = await response.json();
+
+        setUsers(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleUserClick = async (user: UserType) => {
+    setSelectedUser(user);
+    setOpen(true);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box p={3}>
+      <UsersList handleUserClick={handleUserClick} users={users} />
+
+      <PhotoModal open={open} setOpen={setOpen} selectedUser={selectedUser} />
+    </Box>
+  );
 }
 
-export default App
+export default App;
