@@ -1,6 +1,7 @@
-import { Box, List, ListItem, ListItemText } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { UserType } from './types/user.type';
+import { UsersList } from './components/UsersList/UsersList';
 
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
@@ -23,16 +24,7 @@ function App() {
 
   return (
     <Box p={3}>
-      <List>
-        {users.map((user) => (
-          <ListItem key={user.id}>
-            <ListItemText
-              primary={user.name}
-              secondary={`Address: ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <UsersList users={users} />
     </Box>
   );
 }
