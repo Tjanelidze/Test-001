@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# Users App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple React application that displays a list of users and allows you to view a photo modal by clicking a button for each user. The app is built with React and Material-UI (MUI), and it demonstrates fetching data from an external API along with basic state management and UI interactions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fetches and displays user data from an external API
+- Lists users with their name and address information
+- Allows viewing user avatars in a modal dialog
+- Built with React, TypeScript, and Material UI
 
-## Expanding the ESLint configuration
+## Testing
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project uses Jest for testing:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/user-directory.git
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# Navigate to project directory
+cd TEST-001
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
 ```
+
+## API Integration
+
+- User data: [JSONPlaceholder](https://jsonplaceholder.typicode.com/users)
+- Avatar generation: [Robohash](https://robohash.org)
+
+## Technologies
+
+- React
+- TypeScript
+- Material UI
+- Fetch API
+- Jest (Testing Framework)
