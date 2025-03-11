@@ -26,7 +26,10 @@ function App() {
       <List>
         {users.map((user) => (
           <ListItem key={user.id}>
-            <ListItemText primary={user.name} secondary={user.email} />
+            <ListItemText
+              primary={user.name}
+              secondary={`Address: ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}
+            />
           </ListItem>
         ))}
       </List>
