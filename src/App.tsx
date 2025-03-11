@@ -1,7 +1,8 @@
-import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { UserType } from './types/user.type';
 import { UsersList } from './components/UsersList/UsersList';
+import { PhotoModal } from './components/PhotoModal/PhotoModal';
 
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
@@ -34,17 +35,7 @@ function App() {
     <Box p={3}>
       <UsersList handleUserClick={handleUserClick} users={users} />
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{selectedUser?.name}'s Photos</DialogTitle>
-        <DialogContent>
-          {selectedUser && (
-            <img
-              src={`https://robohash.org/${selectedUser.id}?size=200x200`}
-              alt={`${selectedUser.name} avatar`}
-            />
-          )}
-        </DialogContent>
-      </Dialog>
+      <PhotoModal open={open} setOpen={setOpen} selectedUser={selectedUser} />
     </Box>
   );
 }
